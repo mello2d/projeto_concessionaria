@@ -11,6 +11,15 @@ urlpatterns = [
     path('/alterar_marca/<int:id>', views.alterarMarca, name= 'alterar_marca'),
     path('/excluir_marca/<int:id>', views.excluirMarca, name='excluir_marca'),
     
-    #Clientes
-    path('/listar_clientes', views.listarClientes, name='listar_clientes'),
+    #=================================================================================
+    #cliente
+    path('/listar_cliente', views.listarCliente, name='listar_cliente'),
+    path('/incluir_cliente', views.incluirCliente, name='incluir_cliente'),
+    path('/alterar_cliente/<int:id>', views.alterarCliente, name = 'alterar_cliente'),
+    path('/excluir_cliente/<int:id>', views.excluirCliente, name = 'excluir_cliente'),
+
+    #=================================================================================
+    #modelo
+    path('/listar_modelos', views.listarModelos, name='listar_modelo'),
+    path('/incluir_modelo', views.incluirModelo, name='incluir_modelo'),
 ]
