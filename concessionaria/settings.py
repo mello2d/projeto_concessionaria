@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cadastro',
     'django_bootstrap5',
+    'autenticacao',
 ]
 
 MIDDLEWARE = [

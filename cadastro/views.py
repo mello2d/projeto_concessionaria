@@ -1,7 +1,8 @@
 
 from django.shortcuts import render,redirect
-from cadastro.forms import ClienteForm, MarcaForm, ModeloForm
-from cadastro.models import Cliente, Marca, Modelo
+from cadastro.forms import ClienteForm, MarcaForm, ModeloForm, VeiculoForm
+from cadastro.models import Cliente, Marca, Modelo, Veiculo
+from django.contrib import messages
 
 # Create your views here.
 def index(request):
@@ -44,7 +45,7 @@ def excluirMarca(request, id):
     try:
         marca.delete()
     except:
-        pass
+        messages.error(request, "Não foi possível excluir devido a associação")
     return redirect("listar_marcas")
 #======================================================================================
 #CLIENTES
@@ -84,39 +85,69 @@ def excluirCliente(request, id):
 #======================================================================================
 #MODELO
 
-def listarModelos(request):
+def listarModelo(request):
 
-    modelos = Modelo.objects.order_by('nome')
-    return render(request, 'modelos/lista.html',{'modelos': modelos}) 
+    modelo = Modelo.objects.order_by('nome')
+    return render(request, 'modelo/lista.html',{'modelo': modelo}) 
     
 def incluirModelo(request):
     if request.method == 'POST':
         form = ModeloForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('listar_modelos')
+            return redirect('listar_modelo')
     form = ModeloForm()
-    return render(request, 'modelos/form_modelos.html', {'form': form})
+    return render(request, 'modelo/form_modelo.html', {'form': form})
 
 def alterarModelo(request, id):
-    m = Modelo.objects.get(id=id)
-    if request.method == "POST":
-        form = ModeloForm(request.POST, instance=m)
+     modelo = Modelo.objects.get(id = id) #get - buscando o cliente por id 
+     if request.method ==  'POST':
+        form = ModeloForm(request.POST, instance = modelo)
         if form.is_valid():
             form.save()
-            return redirect('listar_modelos')
-    form = ModeloForm(instance=m)
-    return render(request, 'modelos/form.html', {'form' : form})
+            return redirect('listar_modelo')
+     form = ModeloForm(instance = modelo)
+     return render(request, 'modelo/form_modelo.html', {'form': form})
 
 def excluirModelo(request, id):
-    m = Modelo.objects.get(id=id)
+    modelo = Modelo.objects.get (id = id)
     try:
-        m.delete()
+     modelo.delete()
     except:
-        pass
-    return redirect('listar_modelos')
+      pass    
+    return redirect('listar_modelo')
 
+#=======================================================================================
+#VEICULOS
 
+def listarVeiculo(request):
 
+    veiculo = Veiculo.objects.order_by('ano_modelo')
+    return render(request, 'veiculo/lista.html',{'veiculo': veiculo}) 
 
-def index(request)
+def incluirVeiculo(request):
+    if request.method == 'POST':
+        form = VeiculoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('listar_veiculo')
+    form = VeiculoForm()
+    return render(request, 'veiculo/form_veiculo.html', {'form': form})
+
+def alterarVeiculo(request, id):
+     veiculo = Veiculo.objects.get(id = id) #get - buscando o cliente por id 
+     if request.method ==  'POST':
+        form = VeiculoForm(request.POST, instance = veiculo)
+        if form.is_valid():
+            form.save()
+            return redirect('listar_veiculo')
+     form = VeiculoForm(instance = veiculo)
+     return render(request, 'veiculo/form_veiculo.html', {'form': form})
+
+def excluirVeiculo(request, id):
+    veiculo = Veiculo.objects.get (id = id)
+    try:
+     veiculo.delete()
+    except:
+      pass    
+    return redirect('listar_veiculo')

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+   <h2>Veiculo</h2>
+   <a href="{% url 'incluir_veiculo' %}" class="btn btn-info btn-lg">Incluir Novo Veiculo</a>
+
+   <table class='table table-striped'>
+      <thead>
+      <tr>
+         <td>Ano do Modelo</td>
+         <td>Ano de Fabricação</td>
+         <td>Preço</td>
+         <td>Observação</td>
+      </tr>
+   </thead>
+   <tbody>
+      {% for v in veiculo %}
+      <tr>
+         <td>{{v.ano_modelo}}</td>
+         <td>{{v.ano_fabricacao}}</td>
+         <td>{{v.preco}}</td>
+         <td>{{v.observacao}}</td>
+         <td>
+            
+            <a href ="{% url 'alterar_veiculo' v.id %}" class="btn btn-primary">Alterar</a>
+            <a href= "#" class = "btn btn-danger" onclick="abrirTela('{% url 'excluir_veiculo' v.id %}')" >Excluir</a> 
+            
+         </td>        
+      </tr>
+      {% endfor %}
+   </tbody>
+   </table>
+{% endblock %}

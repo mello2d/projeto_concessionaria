@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load django_bootstrap5 %}
+    <h2>Login</h2>
+    <form method="post">
+        {% bootstrap_form form %}
+
+        <input type="submit" class="btn btn-primary">
+            value="Entrar" />
+        <input type="reset" class="btn btn-secondary">
+            value="Limpar" />
+    </form>
+{% endblock %}

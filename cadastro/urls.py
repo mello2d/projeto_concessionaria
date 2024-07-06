@@ -20,6 +20,17 @@ urlpatterns = [
 
     #=================================================================================
     #modelo
-    path('/listar_modelos', views.listarModelos, name='listar_modelo'),
-    path('/incluir_modelo', views.incluirModelo, name='incluir_modelo'),
+    path ('/listar_modelo', views.listarModelo,name='listar_modelo'),
+    path('/incluir_modelo', views.incluirModelo,name='incluir_modelo'),
+    path('/alterar_modelo/<int:id>', views.alterarModelo,name = 'alterar_modelo'),
+    path ('/excluir_modelo/<int:id>', views.excluirModelo, name = 'excluir_modelo'),
+
+    #=================================================================================
+    #veiculo
+    path ('/listar_veiculo', views.listarVeiculo,name='listar_veiculo'),
+    path('/incluir_veiculo', views.incluirVeiculo,name='incluir_veiculo'),
+    path('/alterar_veiculo/<int:id>', views.alterarVeiculo,name = 'alterar_veiculo'),
+    path ('/excluir_veiculo/<int:id>', views.excluirVeiculo, name = 'excluir_veiculo'),
+
+
 ]

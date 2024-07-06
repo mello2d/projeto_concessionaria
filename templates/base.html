@@ -11,12 +11,20 @@
     {% bootstrap_css %}
 </head>
 <body>
-    {% include 'menu.html' %}
-    <div class = 'container'>
-    {% block content %}
-    {% endblock %}
-    </div>
-    {% include 'modal.html' %}
+    {% if messsages %}
+        {% for m in messages %}
+            <div class="alert alert-warning" role="alert">
+                {{m}}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+        {% include 'menu.html' %}
+        <div class = 'container'>
+            {% block content %}
+            {% endblock %}
+        </div>
+        {% include 'modal.html' %}
 </body>
     {% bootstrap_javascript %}
 </html>

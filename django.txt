@@ -21,3 +21,5 @@ Para parar a aplicação
 7) Irá criar a página dentro da pasta "templates" do módulo (app)
 
 8) Adicionar a base do template da concessionaria no caso aqui base.html
+
+python -m django startapp autenticacao
